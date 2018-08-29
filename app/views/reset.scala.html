@@ -1,0 +1,35 @@
+@(regForm: Form[forms.Reset])(implicit requestHeader: RequestHeader, flash: Flash)
+@import helper._
+
+@main{
+<body class="back">
+<div class="layer">
+    <div class="container">
+        <form class="form-horizontal" role="form"  action="/reset" name="myForm" method="POST">          <br><br>
+            @CSRF.formField
+            <h2>Reset Password</h2><br>
+            <div class="form-group">
+
+                <div class="col-sm-12">
+                    <input type="email" name="email" placeholder="Email" required><br><br>
+                </div>
+                <div class="col-sm-12">
+                    <input type="password" name="passwordGroup.password" placeholder="Password" required><br><br>
+                </div>
+                <div class="col-sm-12">
+                    <input type="password" name="passwordGroup.confirmPassword" placeholder="Confirm Password" required><br><br>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>@regForm("passwordGroup").errors.map(error => error.messages)</p>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary text-center">Reset</button><br><br>
+        </form>
+    </div>
+</div> <!-- ./container -->
+
+</body>
+</html>
+}
